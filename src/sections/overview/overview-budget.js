@@ -5,7 +5,7 @@ import CurrencyDollarIcon from '@heroicons/react/24/solid/CurrencyDollarIcon';
 import { Avatar, Card, CardContent, Stack, SvgIcon, Typography } from '@mui/material';
 
 export const OverviewBudget = (props) => {
-  const { difference, positive = false, sx, value } = props;
+  const { difference, positive = false, sx, value, title, date } = props;
 
   return (
     <Card sx={sx}>
@@ -21,7 +21,7 @@ export const OverviewBudget = (props) => {
               color="text.secondary"
               variant="overline"
             >
-              Budget
+              {title}
             </Typography>
             <Typography variant="h4">
               {value}
@@ -61,14 +61,14 @@ export const OverviewBudget = (props) => {
                 color={positive ? 'success.main' : 'error.main'}
                 variant="body2"
               >
-                {difference}%
+                ${difference}
               </Typography>
             </Stack>
             <Typography
               color="text.secondary"
               variant="caption"
             >
-              Since last month
+              Predicción: {date}
             </Typography>
           </Stack>
         )}

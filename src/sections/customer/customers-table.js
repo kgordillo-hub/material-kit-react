@@ -12,10 +12,13 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography
+  Typography,
+  Button,
+  SvgIcon
 } from '@mui/material';
 import { Scrollbar } from 'src/components/scrollbar';
 import { getInitials } from 'src/utils/get-initials';
+
 
 export const CustomersTable = (props) => {
   const {
@@ -40,86 +43,59 @@ export const CustomersTable = (props) => {
       <Scrollbar>
         <Box sx={{ minWidth: 800 }}>
           <Table>
-            <TableHead>
+            <TableHead >
               <TableRow>
-                <TableCell padding="checkbox">
-                  <Checkbox
-                    checked={selectedAll}
-                    indeterminate={selectedSome}
-                    onChange={(event) => {
-                      if (event.target.checked) {
-                        onSelectAll?.();
-                      } else {
-                        onDeselectAll?.();
-                      }
-                    }}
-                  />
+                <TableCell align='center'>
+                  Algoritmo
                 </TableCell>
-                <TableCell>
-                  Name
+                <TableCell align='center'>
+                  Version
                 </TableCell>
-                <TableCell>
-                  Email
+                <TableCell align='center'>
+                  Id. Transaccion
                 </TableCell>
-                <TableCell>
-                  Location
+                <TableCell align='center'>
+                  Validación estructura OpenAPI
                 </TableCell>
-                <TableCell>
-                  Phone
+                <TableCell align='center'>
+                  Analisis Vulnerabilidad Código
                 </TableCell>
-                <TableCell>
-                  Signed Up
+                <TableCell align='center'>
+                  Generación imagen Docker
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {items.map((customer) => {
-                const isSelected = selected.includes(customer.id);
-                const createdAt = format(customer.createdAt, 'dd/MM/yyyy');
 
                 return (
                   <TableRow
                     hover
-                    key={customer.id}
-                    selected={isSelected}
+                    key={customer.uid}
                   >
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        checked={isSelected}
-                        onChange={(event) => {
-                          if (event.target.checked) {
-                            onSelectOne?.(customer.id);
-                          } else {
-                            onDeselectOne?.(customer.id);
-                          }
-                        }}
-                      />
+
+                    <TableCell>
+                    <Typography variant="subtitle2">
+                      {customer.nombreApp}
+                    </Typography>
+                    </TableCell>
+                    <TableCell align='center'>
+                      {customer.version}
+                    </TableCell>
+                    <TableCell align='center'>
+                      {customer.uid}
                     </TableCell>
                     <TableCell>
-                      <Stack
-                        alignItems="center"
-                        direction="row"
-                        spacing={2}
-                      >
-                        <Avatar src={customer.avatar}>
-                          {getInitials(customer.name)}
-                        </Avatar>
-                        <Typography variant="subtitle2">
-                          {customer.name}
-                        </Typography>
-                      </Stack>
+                      <Avatar sx={{ width: 24, height: 24, margin: "auto" }}
+                      src={customer.mensaje.openAPIFileCorrect ==null? '/assets/icons/Loading_2.gif' :customer.mensaje.openAPIFileCorrect? '/assets/icons/right-icon.png':'/assets/icons/wrong-icon.png'}></Avatar>
                     </TableCell>
                     <TableCell>
-                      {customer.email}
+                      <Avatar sx={{ width: 24, height: 24, margin: "auto" }}
+                      src={customer.mensaje.codigoVulnerable ==null? '/assets/icons/Loading_2.gif' : !customer.mensaje.codigoVulnerable ?'/assets/icons/right-icon.png':'/assets/icons/wrong-icon.png'}></Avatar>
                     </TableCell>
                     <TableCell>
-                      {customer.address.city}, {customer.address.state}, {customer.address.country}
-                    </TableCell>
-                    <TableCell>
-                      {customer.phone}
-                    </TableCell>
-                    <TableCell>
-                      {createdAt}
+                      <Avatar sx={{ width: 24, height: 24, margin: "auto" }}
+                      src={customer.mensaje.imagenGenerada ==null? '/assets/icons/Loading_2.gif' : customer.mensaje.imagenGenerada ? '/assets/icons/right-icon.png':'/assets/icons/wrong-icon.png'}></Avatar>
                     </TableCell>
                   </TableRow>
                 );
