@@ -50,7 +50,9 @@ export const CompanyCard2 = (props) => {
       <CardActions sx={{ justifyContent: 'center' }}>
         <MaxWidthDialog
         title={company.nombreApp + ': '+company.version}
-        version={company.descripcion}
+        appName={company.nombreApp}
+        descripcion={company.descripcion}
+        version={company.version}
         enableUse={company.enPreparacion}
         ip={company.ipAPI}
         puerto={company.numeroPuerto}

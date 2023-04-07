@@ -55,7 +55,7 @@ export const OverviewLatestOrders = (props) => {
                 return (
                   <TableRow
                     hover
-                    key={order.UID+'-table'}
+                    key={order.idTransaccion+'-table'}
                   >
                     <TableCell>
                       {order.nombreApp}

@@ -65,7 +65,7 @@ export function ChartTabs(props) {
              data.map((data2, index) => {
                   if(data2.endPoint.endsWith('trainModel')){
                    return (
-                   <Tab label={data2.nombreApp +' | '+ data2.descripcion} {...a11yProps(index)} key={data2.UID+'-tab'}/>
+                   <Tab label={data2.nombreApp +' | '+ data2.descripcion} {...a11yProps(index)} key={data2.idTransaccion+'-tab'}/>
                    );
                 }
             })
@@ -74,9 +74,10 @@ export function ChartTabs(props) {
       </Box>
      {
           data.map((data2, index) => {
+           //console.log(data2);
               return (
 
-                <TabPanel value={value} index={index} key={data2.UID+'-graph'}>
+                <TabPanel value={value} index={index} key={data2.idTransaccion+'-graph'}>
                     <OverviewSales
                       chartSeries={[
                         {

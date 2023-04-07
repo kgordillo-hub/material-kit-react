@@ -64,7 +64,7 @@ const useChartOptions = (categories) => {
       },
       categories: categories,
       labels: {
-        offsetY: 5,
+        offsetY: 0,
         rotate: -75,
         style: {
           fontSize: '9px',

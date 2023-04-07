@@ -91,7 +91,7 @@ return (
           <Grid
             container
             spacing={3}
-            key={predictData.UID+'-sum'}
+            key={predictData.idTransaccion+'-sum'}
           >
            {predictData.map((data) => {
               return(
@@ -99,7 +99,7 @@ return (
                          xs={12}
                          sm={6}
                          lg={4}
-                         key={predictData.UID+'-chart'}
+                         key={data.idTransaccion+'-chart'}
                        >
                          <OverviewBudget
                            title={data.descripcion + "-"+ data.nombreApp}

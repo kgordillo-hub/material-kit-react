@@ -125,8 +125,15 @@ export default function MaxWidthDialog(props) {
            if (state.MAE) {metricas.push("MAE")};
            if (state.MAPE) {metricas.push("MAPE")};
            if (state.RMSE) {metricas.push("RMSE")};
-           console.log(data);
-           let objJsonStr = JSON.stringify(data);
+           //console.log(data);
+           data.currency_o = currencyO;
+           data.currency_d = currencyD;
+           data.date_ini = dateIni;
+           data.date_fin = dateFin;
+           var objJsonStr = JSON.stringify(data);
+
+           //console.log('Request enviar: ', objJsonStr);
+
            let requestB64 = Buffer.from(objJsonStr).toString("base64");
            setRequestB64(requestB64);
            //console.log(requestB64);
@@ -143,7 +150,7 @@ export default function MaxWidthDialog(props) {
      await fetch('http://localhost:8088/llamarModelo', {
         method: 'POST',
         body: JSON.stringify({
-           nombreApp: props.title,
+           nombreApp: props.appName,
            version: props.version,
            idUsuario: 'ksgordillo',
            idTransaccion: props.idTrans,
