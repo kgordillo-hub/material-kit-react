@@ -22,6 +22,7 @@ const UploadAlg = () => {
 const [repo, setRepo] = useState('');
 const [version, setVersion] = useState('1');
 const [appName, setAppName] = useState('');
+const [appDesc, setAppDesc] = useState('')
 const [vinculacionStatus, setVinculacionStatus] = useState('0');
 const [data, setData] = useState([]);
 
@@ -34,6 +35,7 @@ const addPostsVincular =  async () => {
       body: JSON.stringify({
          nombreApp: appName,
          version: "v"+version,
+         descripcion: appDesc,
          mensaje: {esPublico: true, linkRepo: repo, idUsuario: 'ksgordillo', branchRepoName: 'master'}
       }),
       headers: {
@@ -103,7 +105,7 @@ return (
 </Snackbar>
   <Card sx={{ p: 2 }}>
   <CardContent>
-    <Stack spacing={3} direction="column">
+    <Stack spacing={2} direction="column">
     <OutlinedInput
       value={repo}
       onChange={(e) => setRepo(e.target.value)}
@@ -120,7 +122,7 @@ return (
           </SvgIcon>
         </InputAdornment>
       )}
-      sx={{ maxWidth: 700 }}
+      sx={{ maxWidth: 750 }}
     />
     <Stack spacing={3} direction="row">
     <TextField
@@ -128,7 +130,7 @@ return (
       required
       id="nombre-app"
       label="Ingrese el nombre del algoritmo"
-      sx={{ maxWidth: 700 }}
+      sx={{ maxWidth: 750 }}
       value = {appName}
       onChange={(e) => setAppName(e.target.value)}
     />
@@ -148,6 +150,15 @@ return (
       sx={{ maxWidth: 250 }}
     />
     </Stack>
+        <TextField
+          fullWidth
+          required
+          id="descripcion-app"
+          label="Agregue una descripción del algoritmo"
+          sx={{ maxWidth: 750 }}
+          value = {appDesc}
+          onChange={(e) => setAppDesc(e.target.value)}
+        />
     </Stack>
     </CardContent>
     <Divider />
